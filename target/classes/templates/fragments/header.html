@@ -48,7 +48,8 @@
 					</li>					
 				</ul>
 
-				 <!-- 1. Aqui eu estou retirando os botões de login e cadastrar quando o usuário já está logado -->
+				<!-- 1. sec:authorize= '!isAuthenticated()' usando esse trecho -->
+				<!-- 1. Aqui eu estou retirando os botões de login e cadastrar quando o usuário já está logado -->
 				<form class="form-inline mt-2 mt-md-0" sec:authorize= '!isAuthenticated()' >
 					<div class="form-check mb-2 mr-sm-2">
 						<a class="btn btn-outline-success my-2 my-sm-0" role="button"
@@ -61,6 +62,8 @@
 					</div>
 				</form>
 
+				<!-- 1. sec:authorize= 'isAuthenticated()' usando esse trecho -->
+				<!-- 1. Aqui eu estou exibindo o nome do usuário logado e o botão de logout -->
 				<form th:action="@{/logout}" sec:authorize= 'isAuthenticated()'
 					  method="post"  class="form-inline mt-2 mt-md-0">
 					<div class="btn-group mb-2 mr-sm-2">
