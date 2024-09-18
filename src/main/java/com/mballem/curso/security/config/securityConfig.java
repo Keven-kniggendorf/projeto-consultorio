@@ -26,13 +26,21 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/webjars/**", "/css/**", "/image/**", "/js/**").permitAll().
                 antMatchers("/", "/home").permitAll()
+
+                //acessos privados admin
+                .antMatchers("/u/**").hasAnyAuthority("ADMIN")
+                //acessos privados medicos
+                .antMatchers("/medicos/**").hasAnyAuthority("MEDICO")
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/", true)
                 .failureUrl("/login-error")
-                .permitAll().and().logout().logoutSuccessUrl("/");
+                .permitAll().and().logout().logoutSuccessUrl("/")
+                .and()
+                .exceptionHandling().accessDeniedPage("/acesso-negado");
 
     }
 
